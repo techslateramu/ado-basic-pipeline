@@ -1,41 +1,6 @@
-## Using a Specific VM Image
-In this example, we specify a specific VM image, in this case, 'ubuntu-latest,' as the execution environment for the pipeline:
-
-``` yaml
-pool:
-  vmImage: 'ubuntu-latest'
-```
-
-## Using VM Image Details
-You can also specify VM image details such as the ID, publisher, offer, and SKU:
-
-``` yaml
-pool:
-  vmImage:
-    id: 'ubuntu-20.04'
-    publisher: 'Canonical'
-    offer: 'UbuntuServer'
-    sku: '20.04-LTS'
-```
-
-## Using a Self-Hosted Agent
-If you have a self-hosted agent and want to use it, specify the agent name in the name field:
-
-``` yaml
-pool:
-  name: MySelfHostedAgent
-```
-
-## Using a Hosted Agent Pool
-By default, Azure DevOps uses hosted agents. You don't need to specify vmImage or name when using a hosted agent pool:
-
-``` yaml
-pool:
-  vmImage: 'windows-latest'
-```
 
 
-## Triggering Pipelines in Azure DevOps
+# Triggering Pipelines in Azure DevOps
 
 Azure DevOps pipelines support various trigger types to automate your CI/CD workflows. Below are some examples of trigger configurations in Azure DevOps YAML pipelines.
 
@@ -48,7 +13,7 @@ Azure DevOps pipelines support various trigger types to automate your CI/CD work
 - Dependency Trigger
 - Pipeline Resource Trigger
 
-### Push Trigger
+## Push Trigger
 Triggered when code is pushed to specific branches.
 
 ```yaml
@@ -58,7 +23,7 @@ trigger:
       - main
       - feature/first-branch
 ```
-### Push Trigger
+## Push Trigger
 Triggered when code is pushed to specific branches.
 
 ```yaml
@@ -70,7 +35,7 @@ trigger:
     include:
       - '*'
 ```
-### Scheduled Trigger
+## Scheduled Trigger
 Triggered at specific time intervals or schedules.
 
 ```yaml
@@ -78,7 +43,7 @@ schedules:
   - cron: "0 0 * * *"
     displayName: Daily build trigger
 ```
-### CRON explained
+## CRON explained
 
 CRON is a time-based job scheduling system used in Unix-like operating systems, including Linux. It allows you to schedule tasks or commands to run automatically at specific times or intervals. The term "CRON" itself is derived from the Greek word "chronos," which means time.
 
@@ -155,4 +120,44 @@ resources:
         branches:
           include:
             - main
+```
+
+
+# Running Agents
+
+
+## Using a Specific VM Image
+In this example, we specify a specific VM image, in this case, 'ubuntu-latest,' as the execution environment for the pipeline:
+
+``` yaml
+pool:
+  vmImage: 'ubuntu-latest'
+```
+
+## Using VM Image Details
+You can also specify VM image details such as the ID, publisher, offer, and SKU:
+
+``` yaml
+pool:
+  vmImage:
+    id: 'ubuntu-20.04'
+    publisher: 'Canonical'
+    offer: 'UbuntuServer'
+    sku: '20.04-LTS'
+```
+
+## Using a Self-Hosted Agent
+If you have a self-hosted agent and want to use it, specify the agent name in the name field:
+
+``` yaml
+pool:
+  name: MySelfHostedAgent
+```
+
+## Using a Hosted Agent Pool
+By default, Azure DevOps uses hosted agents. You don't need to specify vmImage or name when using a hosted agent pool:
+
+``` yaml
+pool:
+  vmImage: 'windows-latest'
 ```
