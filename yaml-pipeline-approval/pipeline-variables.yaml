@@ -1,0 +1,57 @@
+trigger:
+  branches:
+    include:
+      - main
+      - feature/first-branch
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Dev
+  jobs:
+  - job: Dev1
+    displayName: 'Dev Job 1'
+    steps:
+    - script: echo 'Running Dev Job 1'
+
+  - job: Dev2
+    displayName: 'Dev Job 2'
+    steps:
+    - script: echo 'Running Dev Job 2'
+
+- stage: QA
+  jobs:
+  - job: QA1
+    displayName: 'QA Job 1'
+    steps:
+    - script: echo 'Running QA Job 1'
+
+  - job: QA2
+    displayName: 'QA Job 2'
+    steps:
+    - script: echo 'Running QA Job 2'
+
+- stage: Staging
+  jobs:
+  - job: Staging1
+    displayName: 'Staging Job 1'
+    steps:
+    - script: echo 'Running Staging Job 1'
+
+  - job: Staging2
+    displayName: 'Staging Job 2'
+    steps:
+    - script: echo 'Running Staging Job 2'
+
+- stage: Prod
+  jobs:
+  - job: Prod1
+    displayName: 'Prod Job 1'
+    steps:
+    - script: echo 'Running Prod Job 1'
+
+  - job: Prod2
+    displayName: 'Prod Job 2'
+    steps:
+    - script: echo 'Running Prod Job 2'
