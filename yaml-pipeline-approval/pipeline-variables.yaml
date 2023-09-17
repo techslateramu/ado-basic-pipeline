@@ -7,51 +7,42 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  URL: 'This is a shared variable value'
+
 stages:
 - stage: Dev
   jobs:
   - job: Dev1
     displayName: 'Dev Job 1'
     steps:
-    - script: echo 'Running Dev Job 1'
-
-  - job: Dev2
-    displayName: 'Dev Job 2'
-    steps:
-    - script: echo 'Running Dev Job 2'
+    - script: |
+        echo 'Running Dev Job 1'
+        echo "MyVariable in Dev Stage: $(URL)"
 
 - stage: QA
   jobs:
   - job: QA1
     displayName: 'QA Job 1'
     steps:
-    - script: echo 'Running QA Job 1'
-
-  - job: QA2
-    displayName: 'QA Job 2'
-    steps:
-    - script: echo 'Running QA Job 2'
+    - script: |
+        echo 'Running QA Job 1'
+        echo "MyVariable in QA Stage: $(URL)"
 
 - stage: Staging
   jobs:
   - job: Staging1
     displayName: 'Staging Job 1'
     steps:
-    - script: echo 'Running Staging Job 1'
-
-  - job: Staging2
-    displayName: 'Staging Job 2'
-    steps:
-    - script: echo 'Running Staging Job 2'
+    - script: |
+        echo 'Running Staging Job 1'
+        echo "MyVariable in Staging Stage: $(URL)"
 
 - stage: Prod
   jobs:
   - job: Prod1
     displayName: 'Prod Job 1'
     steps:
-    - script: echo 'Running Prod Job 1'
-
-  - job: Prod2
-    displayName: 'Prod Job 2'
-    steps:
-    - script: echo 'Running Prod Job 2'
+    - script: |
+        echo 'Running Prod Job 1'
+        echo "MyVariable in Prod Stage: $(URL)"
