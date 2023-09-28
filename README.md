@@ -169,9 +169,54 @@ pool:
 # <span style="color: blue;">YAML Pipeline-Variables</span>
 - This is the basic yaml pipeline, which explains how to use pipeline variables
 
+## variables with in the code  
+
+``` yaml
+variables:
+  buildConfiguration: 'Release'
+  deployToProduction: true  # Define a single variable for deployment
+```
+
+## variables consider as pipeline variabels
+- set the variable in pipeline and use it in code
+
 
 # <span style="color: blue;">YAML Pipeline-Group-Variables</span>
-- This is the basic yaml pipeline, which explains how to use pipeline variables
+- Add Group Variables in Library section
+- Attach them to Stages or to the pipeline 
+
+``` yaml
+variables:
+  - group: common
+```
+ the variables inside common group can be accessed through out the pipelines
+
+``` yaml
+- stage: Prod
+  variables:
+  - group: env-prod
+  jobs:
+  - job: Prod1
+    displayName: 'Prod Job 1'
+    steps:
+    - script: echo 'Running Prod Job 1'
+```
+ the variables inside env-prod group can be accessed through only in PROD stage
+
 
 # <span style="color: blue;">YAML Pipeline-Approval</span>
-- This is the basic yaml pipeline, which explains how to control pipelines with approvals.
+- Create an Environment called 'Prod-Approvers' and approvers into it
+
+``` yaml
+stages:
+- stage: Prod
+  jobs:
+  - deployment: DeployToProd
+    displayName: 'Deploy to Prod'
+    environment: Prod-Approvers
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo 'Running Prod Job 1'
+```
