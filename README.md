@@ -171,14 +171,42 @@ pool:
 
 ## variables with in the code  
 
+
+
+## variables consider as pipeline variabels
+- set the variable in pipeline and use it in code ( you can do it two ways 1. as code (below example)    2. edit pipeline add varible )
+- add 'myurl' as pipeline variable
+
 ``` yaml
 variables:
   buildConfiguration: 'Release'
   deployToProduction: true  # Define a single variable for deployment
+
+stages:
+- stage: Dev
+  jobs:
+  - job: Dev1
+    displayName: 'Dev Job 1'
+    steps:
+    - script: echo 'URL is ' $(myurl)   # this variable is coming from pipeline variable
+    - script: echo 'Deployement to Production value is  ' $(deployToProduction) # this variable is coming from code
+    - script: echo 'Build Configuration value is  ' $(buildConfiguration) # this variable is coming from code
+
+    
+- stage: Prod
+  jobs:
+  - job: Prod1
+    displayName: 'Prod Job 1'
+    steps:
+    - script: echo 'URL is ' $(myurl)   # this variable is coming from pipeline variable
+    - script: echo 'Deployement to Production value is  ' $(deployToProduction) # this variable is coming from code
+    - script: echo 'Build Configuration value is  ' $(buildConfiguration) # this variable is coming from code
+
 ```
 
-## variables consider as pipeline variabels
-- set the variable in pipeline and use it in code
+
+
+
 
 
 # <span style="color: blue;">YAML Pipeline-Group-Variables</span>
