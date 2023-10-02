@@ -184,14 +184,23 @@ variables:
 # <span style="color: blue;">YAML Pipeline-Group-Variables</span>
 - Add Group Variables in Library section
 - Attach them to Stages or to the pipeline 
+ 
+ - add two group variables into libray env-dev, env-prod 
+ - add these variables into each group-variables 
+ -- url, key
 
 ``` yaml
-variables:
-  - group: common
-```
- the variables inside common group can be accessed through out the pipelines
-
-``` yaml
+stages:
+- stage: Dev
+  variables:
+  - group: env-dev
+  jobs:
+  - job: Dev1
+    displayName: 'Dev Job 1'
+    steps:
+    - script: echo 'URL is ' $(url)
+    - script: echo 'Key is ' $(key)
+    
 - stage: Prod
   variables:
   - group: env-prod
@@ -199,16 +208,33 @@ variables:
   - job: Prod1
     displayName: 'Prod Job 1'
     steps:
-    - script: echo 'Running Prod Job 1'
+    - script: echo 'URL is ' $(url)
+    - script: echo 'Key is ' $(key)
 ```
- the variables inside env-prod group can be accessed through only in PROD stage
+- the variables inside env-prod group can be accessed through only in PROD stage
+- the variables inside env-prod group can be accessed through only in PROD stage
+
+
+``` yaml
+variables:
+  - group: common
+```
+ the variables inside common group can be accessed through out the pipelines in ALL STAGES
 
 
 # <span style="color: blue;">YAML Pipeline-Approval</span>
-- Create an Environment called 'Prod-Approvers' and approvers into it
+- Create an Environment called 'Prod-Approvers' 
+- Add approvers into this Environment
 
 ``` yaml
 stages:
+- stage: Dev
+  jobs:
+  - job: Dev1
+    displayName: 'Dev Job 1'
+    steps:
+    - script: echo 'Running Dev Job 1'
+
 - stage: Prod
   jobs:
   - deployment: DeployToProd
