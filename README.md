@@ -215,9 +215,40 @@ stages:
 - the variables inside env-prod group can be accessed through only in PROD stage
 
 
+---- 
+
+ - add this variables into group varialbe called 'common'
+ -- company
+
 ``` yaml
 variables:
   - group: common
+
+stages:
+- stage: Dev
+  variables:
+  - group: env-dev
+  jobs:
+  - job: Dev1
+    displayName: 'Dev Job 1'
+    steps:
+    - script: echo 'URL is ' $(url)
+    - script: echo 'Key is ' $(key)
+    - script: echo 'Key is ' $(company)
+
+    
+- stage: Prod
+  variables:
+  - group: env-prod
+  jobs:
+  - job: Prod1
+    displayName: 'Prod Job 1'
+    steps:
+    - script: echo 'URL is ' $(url)
+    - script: echo 'Key is ' $(key)
+    - script: echo 'Key is ' $(company)
+
+
 ```
  the variables inside common group can be accessed through out the pipelines in ALL STAGES
 
