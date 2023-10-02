@@ -1,8 +1,9 @@
+name: $(Build.DefinitionName)-$(Date:yyyyMMdd)$(Rev:.r)
+
 trigger:
   branches:
     include:
       - main
-      - feature/first-branch
 
 pool:
   vmImage: 'ubuntu-latest'
