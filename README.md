@@ -2,8 +2,13 @@
 # <span style="color: blue;">YAML Pipeline-Basic</span>
 - This is the basic yaml pipeline, which contains triggers, pool, stages, jobs and tasks with examples
 
+# <span style="color: Pink;">Here is the README.md of Yaml Basic Pipeline</span> .
 
-## Triggering Pipelines in Azure DevOps
+|  S.No    |       Topic            |       Link           |
+|  ----    |------------------------|------------------------|
+| 01       |   Yaml Basic Pipeline     |[Yaml Basic Pipeline ](yaml-pipeline-basic/README.md) |
+
+## <span style="color: GREEN;"> Triggering Pipelines in Azure DevOps
 
 Azure DevOps pipelines support various trigger types to automate your CI/CD workflows. Below are some examples of trigger configurations in Azure DevOps YAML pipelines.
 
